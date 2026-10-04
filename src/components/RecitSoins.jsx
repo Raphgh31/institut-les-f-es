@@ -28,7 +28,7 @@ const chapitres = [
     intro: 'Modelages et rituels venus d’ailleurs, dans la cabine Zen : on relâche les tensions et on prend le temps.',
     soins: [trouver('corps', 'Modelage à la bougie'), trouver('corps', 'Soin californien'), trouver('corps', 'Rituel Rêve des Marquises')],
     lien: { to: '/soins#corps', label: 'Les soins du corps' },
-    visuel: { type: 'photo', image: cabineZen, l: 720, h: 1571, cadrage: '50% 12%', alt: 'La porte de la cabine de soins, surmontée des lettres ZEN.' },
+    visuel: { type: 'photo', image: cabineZen, l: 1200, h: 1500, alt: 'La porte de la cabine de soins, surmontée des lettres ZEN.' },
   },
   {
     id: 'mains',

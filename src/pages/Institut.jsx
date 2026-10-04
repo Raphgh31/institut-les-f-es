@@ -33,7 +33,7 @@ export default function Institut() {
       <EnTetePage
         surtitre="L’institut"
         lignes={['Mélody, Cécile', 'et leur institut']}
-        visuel={<Arche src={cabineZen} alt="La porte de la cabine de soins, surmontée des lettres ZEN." largeur={720} hauteur={1571} cadrage="50% 10%" priorite />}
+        visuel={<Arche src={cabineZen} alt="La porte de la cabine de soins, surmontée des lettres ZEN." largeur={1200} hauteur={1500} priorite />}
         galet={1}
       >
         <p>
