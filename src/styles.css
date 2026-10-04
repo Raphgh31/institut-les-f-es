@@ -1,0 +1,704 @@
+/* Direction : l'enseigne de la vitrine (ardoise, script blanc, points verts)
+   rencontre l'intérieur (murs blancs, tasseaux de chêne clair, chaises prune).
+   Mises en page asymétriques, alignées à gauche, photos à bords francs. */
+:root {
+  --ardoise: #2a323d;      /* bandeau de l'enseigne */
+  --ardoise-fonce: #1e252e;
+  --blanc: #fcfcfb;        /* murs de l'institut */
+  --chene: #e6dccd;        /* tasseaux de bois clair */
+  --chene-fonce: #b89c78;
+  --prune: #6e2d55;        /* chaises de l'accueil */
+  --prune-fonce: #561f42;
+  --vert: #7bb661;         /* points verts de la vitrine */
+  --encre: #23272e;
+  --gris: #5b636e;
+  --trait: #dcdcd8;
+  --sur-ardoise: #e9ecef;
+  --sur-ardoise-doux: #b7bec7;
+
+  --f-script: 'Allura', 'Segoe Script', cursive;
+  --f-titre: 'Marcellus', 'Times New Roman', Georgia, serif;
+  --f-texte: 'Figtree', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --conteneur: 74rem;
+  --gouttiere: clamp(1rem, 4vw, 2.5rem);
+  --section: clamp(4rem, 9vw, 7.5rem);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 6rem; }
+
+body {
+  margin: 0;
+  background: var(--blanc);
+  color: var(--encre);
+  font-family: var(--f-texte);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+h1, h2, h3 {
+  font-family: var(--f-titre);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+  text-wrap: balance;
+  letter-spacing: -0.005em;
+}
+h1 { font-size: clamp(2.3rem, 5.2vw, 4rem); }
+h2 { font-size: clamp(1.75rem, 3.4vw, 2.6rem); }
+h3 { font-size: clamp(1.25rem, 2vw, 1.45rem); }
+p { margin: 0; }
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--vert);
+  outline-offset: 3px;
+}
+
+address { font-style: normal; }
+
+.conteneur {
+  width: 100%;
+  max-width: var(--conteneur);
+  margin-inline: auto;
+  padding-inline: var(--gouttiere);
+}
+
+.section { padding-block: var(--section); }
+
+.evitement {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--ardoise);
+  color: #fff;
+  padding: 0.6rem 1rem;
+}
+.evitement:focus { top: 1rem; }
+
+/* ---------- Boutons et liens ---------- */
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  font: 500 1rem/1.2 var(--f-texte);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.bouton--prune { background: var(--prune); color: #fff; }
+.bouton--prune:hover { background: var(--prune-fonce); }
+.bouton--clair { background: #fff; color: var(--ardoise); }
+.bouton--clair:hover { background: var(--chene); }
+.bouton--contour-clair { border-color: rgba(255, 255, 255, 0.55); color: #fff; }
+.bouton--contour-clair:hover { background: #fff; color: var(--ardoise); }
+
+.lien-fleche {
+  display: inline-block;
+  font-weight: 500;
+  color: var(--prune);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: text-underline-offset 0.25s var(--ease), color 0.25s var(--ease);
+}
+.lien-fleche:hover { text-underline-offset: 0.45em; color: var(--prune-fonce); }
+
+/* ---------- En-tête ---------- */
+.entete {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 50;
+  background: var(--blanc);
+  border-bottom: 1px solid var(--trait);
+}
+.entete__barre {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding: 0.6rem var(--gouttiere);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--ardoise);
+  margin-right: auto;
+  line-height: 1;
+}
+.logo__script {
+  font-family: var(--f-script);
+  font-size: 2.35rem;
+  line-height: 1;
+  color: var(--ardoise);
+}
+.logo__script--clair { color: #fff; }
+.logo__sous {
+  font-size: 0.78rem;
+  color: var(--gris);
+  margin-top: 0.15rem;
+  padding-left: 0.2rem;
+}
+
+.nav { display: flex; gap: 1.6rem; }
+.nav__lien {
+  position: relative;
+  text-decoration: none;
+  font-size: 0.98rem;
+  color: var(--encre);
+  padding-block: 0.4rem;
+}
+.nav__lien::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -0.15rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vert);
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.3s var(--ease);
+}
+.nav__lien:hover::after { transform: translateX(-50%) scale(0.7); }
+.nav__lien.active::after { transform: translateX(-50%) scale(1); }
+
+.entete__rdv { min-height: 2.6rem; padding: 0.55rem 1.1rem; font-size: 0.95rem; }
+
+.menu-bouton {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: 0;
+  font: 500 1rem var(--f-texte);
+  color: var(--ardoise);
+  padding: 0.6rem 0.2rem;
+  cursor: pointer;
+}
+.menu-bouton__traits {
+  position: relative;
+  width: 20px;
+  height: 10px;
+  border-top: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transition: transform 0.3s var(--ease);
+}
+.menu-bouton__traits[data-ouvert='true'] { transform: scaleY(0.2); }
+
+.menu-mobile {
+  overflow: hidden;
+  background: var(--ardoise);
+  color: #fff;
+}
+.menu-mobile ul {
+  list-style: none;
+  margin: 0;
+  padding: 1rem var(--gouttiere) 0.5rem;
+}
+.menu-mobile__lien {
+  display: block;
+  padding: 0.55rem 0;
+  font-family: var(--f-titre);
+  font-size: 1.6rem;
+  color: var(--sur-ardoise);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.menu-mobile__lien.active { color: #fff; }
+.menu-mobile__lien.active::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 0.7rem;
+  border-radius: 50%;
+  background: var(--vert);
+  vertical-align: middle;
+}
+.menu-mobile__pied {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  padding: 1rem var(--gouttiere) 1.75rem;
+}
+.menu-mobile__tel { color: var(--sur-ardoise); }
+
+@media (max-width: 1080px) {
+  .nav { gap: 1.1rem; }
+  .entete__barre { gap: 1.2rem; }
+}
+@media (max-width: 960px) {
+  .nav, .entete__rdv { display: none; }
+  .menu-bouton { display: inline-flex; }
+}
+
+/* ---------- Accueil : hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  background: var(--ardoise);
+  color: #fff;
+}
+.hero__texte {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 5vw, 4.5rem) clamp(3rem, 6vw, 5rem) max(var(--gouttiere), calc((100vw - var(--conteneur)) / 2 + var(--gouttiere)));
+}
+.hero__lieu {
+  font-size: 0.95rem;
+  color: var(--sur-ardoise-doux);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.hero__lieu::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--vert);
+}
+.hero h1 { max-width: 13ch; }
+.hero__intro { max-width: 34rem; color: var(--sur-ardoise); font-size: 1.12rem; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 0.4rem; }
+.hero__tel { color: var(--sur-ardoise); text-decoration: none; }
+.hero__tel strong { font-weight: 600; color: #fff; white-space: nowrap; }
+.hero__tel:hover strong { text-decoration: underline; text-underline-offset: 0.25em; }
+.hero__statut {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.95rem;
+  color: var(--sur-ardoise-doux);
+}
+.hero__photo { position: relative; min-height: 26rem; }
+.hero__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 50%;
+}
+
+.statut { display: inline-flex; align-items: center; gap: 0.55rem; font-weight: 500; }
+.statut__point {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--chene-fonce);
+}
+.statut--ouvert .statut__point {
+  background: var(--vert);
+  box-shadow: 0 0 0 4px rgba(123, 182, 97, 0.22);
+}
+
+/* La liste de la vitrine */
+.vitrine {
+  background: var(--ardoise-fonce);
+  color: var(--sur-ardoise);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.vitrine ul {
+  list-style: none;
+  margin-block: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  padding-block: 1.1rem;
+}
+.vitrine li { display: flex; align-items: center; gap: 1.5rem; }
+.vitrine li + li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vert);
+}
+.vitrine a {
+  font-family: var(--f-titre);
+  font-size: 1.05rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s var(--ease);
+}
+.vitrine a:hover { color: #fff; text-decoration: underline; text-underline-offset: 0.3em; }
+
+/* ---------- Accueil : sections ---------- */
+.institut {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+.institut__texte { display: grid; gap: 1.2rem; max-width: 34rem; }
+.institut__texte p { color: var(--gris); }
+.institut__photo { position: relative; padding: 0 0 2rem 2rem; }
+.institut__photo::before {
+  content: '';
+  position: absolute;
+  inset: 2.5rem 2.5rem 0 0;
+  background: repeating-linear-gradient(90deg, var(--chene) 0 14px, var(--chene-fonce) 14px 15px, var(--chene) 15px 22px);
+  opacity: 0.85;
+}
+.institut__photo img { position: relative; width: 100%; aspect-ratio: 773 / 460; object-fit: cover; }
+
+.laser { background: var(--prune); color: #fff; padding-block: clamp(3.5rem, 7vw, 5.5rem); }
+.laser__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem clamp(2rem, 6vw, 6rem);
+  align-items: end;
+}
+.laser__badge {
+  display: inline-block;
+  font-size: 0.92rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 2px;
+  margin-bottom: 1.1rem;
+}
+.laser__texte { display: grid; gap: 1.5rem; justify-items: start; }
+.laser__texte p { color: rgba(255, 255, 255, 0.86); max-width: 34rem; }
+
+.selection__tete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.selection__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--encre);
+}
+.selection__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.6rem 1.8rem 1.8rem 0;
+}
+.selection__item + .selection__item { padding-left: 1.8rem; border-left: 1px solid var(--trait); }
+.selection__item p { color: var(--gris); }
+.selection__meta { font-size: 0.9rem; }
+.selection__item .selection__prix {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  font-family: var(--f-titre);
+  font-size: 1.5rem;
+  color: var(--prune);
+}
+
+.boutique-accueil { background: var(--chene); }
+.boutique-accueil__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+.boutique-accueil__photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.boutique-accueil__texte { display: grid; gap: 1.2rem; max-width: 30rem; }
+.boutique-accueil__texte p { color: #4b4f55; }
+
+.venir {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.venir__photo img { width: 100%; aspect-ratio: 556 / 218; object-fit: cover; }
+.venir__texte { display: grid; gap: 1.1rem; }
+.venir__texte address { font-size: 1.2rem; }
+.venir__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; }
+
+/* ---------- En-tête des pages intérieures ---------- */
+.entete-page { background: var(--ardoise); color: #fff; padding-block: clamp(3rem, 7vw, 5.5rem); }
+.entete-page__grille { display: grid; gap: 2rem; }
+.entete-page--image .entete-page__grille {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+.entete-page__texte { display: grid; gap: 1.2rem; }
+.entete-page__intro { max-width: 36rem; color: var(--sur-ardoise); font-size: 1.1rem; }
+.entete-page__image { width: 100%; max-height: 22rem; object-fit: cover; }
+
+/* ---------- Soins ---------- */
+.soins + .soins { padding-top: 0; }
+.soins__tete {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 1rem 3rem;
+  align-items: end;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--encre);
+}
+.soins__tete p { color: var(--gris); max-width: 36rem; }
+.soins__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+}
+.soin { padding-block: 1.6rem; border-bottom: 1px solid var(--trait); display: grid; gap: 0.4rem; align-content: start; }
+.soin__haut { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.soin__prix { font-family: var(--f-titre); font-size: 1.3rem; color: var(--prune); white-space: nowrap; }
+.soin__duree { font-size: 0.92rem; color: var(--chene-fonce); font-weight: 500; }
+.soin > p:last-child { color: var(--gris); }
+
+.bandeau-rdv > div {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  background: var(--chene);
+}
+.bandeau-rdv p { max-width: 40rem; color: #4b4f55; }
+.bandeau-rdv a:not(.bouton) { color: var(--prune); }
+
+/* ---------- Tarifs : la carte ---------- */
+.carte {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(3rem, 6vw, 5rem) var(--section);
+}
+.carte__index { position: relative; }
+.carte__index ul {
+  position: sticky;
+  top: 6.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+.carte__index a {
+  display: block;
+  padding: 0.35rem 0 0.35rem 0.9rem;
+  border-left: 1px solid var(--trait);
+  text-decoration: none;
+  color: var(--gris);
+  font-size: 0.97rem;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.carte__index a:hover { color: var(--prune); border-color: var(--prune); }
+
+.carte__contenu { display: grid; gap: 3.5rem; max-width: 46rem; }
+.carte__categorie h2 {
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--encre);
+}
+.carte__note { color: var(--gris); }
+.carte__note a { color: var(--prune); }
+
+.prix { list-style: none; margin: 0; padding: 0; }
+.prix__ligne { padding-block: 0.8rem; border-bottom: 1px solid var(--trait); }
+.prix__haut { display: flex; align-items: baseline; gap: 0.6rem; }
+.prix__nom { min-width: 0; }
+.prix__duree { margin-left: 0.6rem; font-size: 0.88rem; color: var(--chene-fonce); font-weight: 500; white-space: nowrap; }
+.prix__points {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 2px dotted #c3c3bd;
+  transform: translateY(-0.3em);
+}
+.prix__montant {
+  font-family: var(--f-titre);
+  font-size: 1.12rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--prune);
+}
+.prix__desc { margin-top: 0.3rem; font-size: 0.95rem; color: var(--gris); max-width: 36rem; }
+
+/* ---------- Épilation définitive ---------- */
+.methodes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5vw, 4rem); }
+.methode { display: grid; gap: 1rem; align-content: start; padding-top: 1.6rem; border-top: 3px solid var(--prune); }
+.methode p { color: var(--gris); }
+.methode .methode__type { color: var(--prune); font-weight: 500; }
+
+.etapes { background: var(--chene); }
+.etapes h2 { margin-bottom: 2.5rem; }
+.etapes__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+.etape { display: grid; gap: 0.7rem; align-content: start; }
+.etape__num {
+  font-family: var(--f-titre);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--prune);
+}
+.etape p { color: #4b4f55; }
+
+/* ---------- Boutique ---------- */
+.cadeau {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.cadeau__carte {
+  aspect-ratio: 1.6 / 1;
+  max-width: 100%;
+  background: var(--ardoise);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  position: relative;
+  transform: rotate(-2deg);
+  transition: transform 0.5s var(--ease);
+}
+.cadeau__carte:hover { transform: rotate(0deg); }
+.cadeau__carte::after {
+  content: '';
+  position: absolute;
+  right: 1.6rem;
+  top: 1.6rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vert);
+  box-shadow: -18px 10px 0 -2px var(--vert), -6px 28px 0 -3px var(--vert);
+}
+.cadeau__carte .logo__script { color: #fff; font-size: clamp(3rem, 7vw, 4.4rem); }
+.cadeau__ligne {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--sur-ardoise);
+}
+.cadeau__texte { display: grid; gap: 1.1rem; }
+.cadeau__texte p { color: var(--gris); max-width: 32rem; }
+.cadeau__tel a { font-family: var(--f-titre); font-size: 1.6rem; color: var(--prune); text-decoration: none; }
+
+.marques { padding-top: 0; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4.5rem); }
+.marques__tete { display: grid; gap: 1.8rem; align-content: start; }
+.marques__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2.5rem;
+}
+.marque { padding-block: 1.4rem; border-top: 1px solid var(--encre); display: grid; gap: 0.35rem; align-content: start; }
+.marque .marque__type { color: var(--chene-fonce); font-weight: 500; font-size: 0.92rem; }
+.marque p:last-child { color: var(--gris); }
+
+/* ---------- Contact ---------- */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2.5rem, 6vw, 6rem); }
+.contact__horaires { display: grid; gap: 1.2rem; align-content: start; }
+.horaires { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.horaires th, .horaires td { text-align: left; padding: 0.85rem 0; border-bottom: 1px solid var(--trait); font-weight: 400; }
+.horaires td { text-align: right; }
+.horaires--jour th, .horaires--jour td { font-weight: 600; color: var(--prune); }
+.horaires--jour th::after {
+  content: 'aujourd’hui';
+  margin-left: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gris);
+}
+.contact__infos { display: grid; gap: 2rem; align-content: start; }
+.contact__bloc { display: grid; gap: 0.6rem; justify-items: start; padding-bottom: 2rem; border-bottom: 1px solid var(--trait); }
+.contact__bloc:last-child { border-bottom: 0; }
+.contact__bloc p, .contact__bloc address { color: var(--gris); }
+.contact__bloc a:not(.bouton):not(.lien-fleche) { color: var(--encre); }
+.contact__grand a { font-family: var(--f-titre); font-size: 1.8rem; text-decoration: none; }
+
+.introuvable { display: grid; gap: 1.2rem; justify-items: start; }
+
+/* ---------- Pied de page ---------- */
+.pied { background: var(--ardoise-fonce); color: var(--sur-ardoise-doux); padding-top: clamp(3rem, 6vw, 4.5rem); font-size: 0.97rem; }
+.pied__grille { display: grid; grid-template-columns: 1.3fr 1fr 1.2fr 0.8fr; gap: 2.5rem; }
+.pied__marque { display: grid; gap: 0.8rem; align-content: start; }
+.pied__marque .logo__script { font-size: 2.8rem; }
+.pied__titre { font-family: var(--f-texte); font-size: 0.97rem; font-weight: 600; color: #fff; margin-bottom: 0.9rem; }
+.pied__liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+.pied a { color: var(--sur-ardoise); text-decoration: none; overflow-wrap: anywhere; }
+.pied a:hover { color: #fff; text-decoration: underline; text-underline-offset: 0.25em; }
+.pied__horaires { margin: 0; display: grid; gap: 0.3rem; font-variant-numeric: tabular-nums; }
+.pied__horaires div { display: flex; justify-content: space-between; gap: 1rem; }
+.pied__horaires dd { margin: 0; text-align: right; }
+.pied__mention { margin-top: 3rem; padding-block: 1.3rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.88rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero__texte { padding: 3rem var(--gouttiere); }
+  .hero__photo { min-height: 0; aspect-ratio: 4 / 3; order: -1; }
+  .institut, .laser__grille, .boutique-accueil__grille, .venir, .cadeau, .marques, .contact,
+  .entete-page--image .entete-page__grille, .soins__tete { grid-template-columns: minmax(0, 1fr); }
+  .selection__liste, .etapes__liste { grid-template-columns: minmax(0, 1fr); }
+  .selection__item, .selection__item + .selection__item { padding: 1.5rem 0; border-left: 0; }
+  .selection__item + .selection__item { border-top: 1px solid var(--trait); }
+  .carte { grid-template-columns: minmax(0, 1fr); }
+  .carte__index ul { position: static; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .carte__index a { border: 1px solid var(--trait); padding: 0.35rem 0.75rem; font-size: 0.92rem; }
+  .pied__grille { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vitrine ul { justify-content: flex-start; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 1rem; }
+  .logo__script { font-size: 2rem; }
+  .logo__sous { display: none; }
+  .soins__liste, .methodes, .marques__liste { grid-template-columns: minmax(0, 1fr); }
+  .institut__photo { padding: 0 0 1.25rem 1.25rem; }
+  .institut__photo::before { inset: 1.5rem 1.5rem 0 0; }
+  .vitrine ul { gap: 0.3rem 1rem; }
+  .vitrine li { gap: 1rem; }
+  .vitrine a { font-size: 0.98rem; }
+  .pied__grille { grid-template-columns: minmax(0, 1fr); }
+  .prix__haut { flex-wrap: wrap; }
+  .prix__nom { flex: 1 1 60%; }
+  .prix__points { display: none; }
+  .prix__montant { margin-left: auto; }
+  .cadeau__carte { transform: rotate(-1deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
