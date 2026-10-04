@@ -608,6 +608,7 @@ html.curseur-appui .curseur--label .curseur__disque { transform: scale(1.15); }
 .panneau__visuel { width: min(100%, 30rem); }
 .panneau:nth-child(even) .panneau__visuel { justify-self: end; }
 .panneau__visuel .arche__cadre { aspect-ratio: 4 / 5; }
+.panneau__visuel .arche--large .arche__cadre { aspect-ratio: 3 / 2; }
 .panneau__sculpture { position: relative; aspect-ratio: 4 / 5; display: grid; place-items: center; }
 .panneau__halo { position: absolute; inset: 8% 4%; width: auto; height: auto; }
 .panneau__sculpture .perle { width: 82%; }

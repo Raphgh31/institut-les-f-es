@@ -5,9 +5,9 @@ import Reveal from '../components/ui/Reveal.jsx'
 import TitreRevele from '../components/ui/TitreRevele.jsx'
 import BoutonRdv from '../components/ui/BoutonRdv.jsx'
 import EnTetePage from '../components/EnTetePage.jsx'
-import Perle from '../components/Perle.jsx'
+import Arche from '../components/ui/Arche.jsx'
 import { institut } from '../data/institut.js'
-import perleChampagne from '../assets/perles/perle-champagne.webp'
+import epilationLaser from '../assets/photos/epilation-laser.webp'
 
 const methodes = [
   {
@@ -40,9 +40,8 @@ export default function EpilationDefinitive() {
       <EnTetePage
         surtitre="Nouveau à l’institut"
         lignes={['L’épilation', 'définitive']}
-        visuel={<Perle image={perleChampagne} />}
+        visuel={<Arche src={epilationLaser} alt="Une séance d’épilation au laser sur la jambe, réalisée avec une pièce à main." largeur={1224} hauteur={816} className="arche--large" priorite />}
         galet={3}
-        tourne
       >
         <p>Deux techniques complémentaires pour en finir avec le rasoir et la cire : le laser diode MyLaser et l’Apilus.</p>
       </EnTetePage>

@@ -8,9 +8,9 @@ import Perle from './Perle.jsx'
 import Reveal from './ui/Reveal.jsx'
 import { trouver } from '../data/tarifs.js'
 import perleNacre from '../assets/perles/perle-nacre.webp'
-import perleChampagne from '../assets/perles/perle-champagne.webp'
 import cabineZen from '../assets/photos/cabine-zen.webp'
-import manucure from '../assets/photos/manucure.webp'
+import soinManucure from '../assets/photos/soin-manucure.webp'
+import epilationLaser from '../assets/photos/epilation-laser.webp'
 import Prix from './Prix.jsx'
 
 const chapitres = [
@@ -36,7 +36,7 @@ const chapitres = [
     intro: 'Manucure, semi-permanent, beauté des pieds, rehaussement de cils : les détails qui changent tout.',
     soins: [trouver('mains', 'Vernis semi-permanent couleur'), trouver('pieds', 'Beauté des pieds'), trouver('regard', 'Rehaussement de cils')],
     lien: { to: '/tarifs#mains', label: 'Les tarifs ongles et regard' },
-    visuel: { type: 'photo', image: manucure, l: 1300, h: 851, cadrage: '58% 50%', alt: 'La table de manucure et ses chaises prune.' },
+    visuel: { type: 'photo', large: true, image: soinManucure, l: 1224, h: 816, alt: 'Une manucure en cours : l’esthéticienne lime les ongles d’une cliente, la main posée sur une serviette roulée.' },
   },
   {
     id: 'laser',
@@ -44,7 +44,7 @@ const chapitres = [
     intro: 'Le laser diode MyLaser et l’Apilus, pour en finir avec le rasoir et la cire. Le tarif s’établit lors d’un rendez-vous conseil.',
     soins: [trouver('definitive', 'Laser diode MyLaser'), trouver('definitive', 'Apilus')],
     lien: { to: '/epilation-definitive', label: 'Tout savoir sur l’épilation définitive' },
-    visuel: { type: 'perle', image: perleChampagne },
+    visuel: { type: 'photo', large: true, image: epilationLaser, l: 1224, h: 816, alt: 'Une séance d’épilation au laser sur la jambe, réalisée avec une pièce à main.' },
   },
 ]
 
@@ -60,7 +60,7 @@ function Panneau({ chapitre, index, onActif }) {
     <article ref={ref} id={`chapitre-${chapitre.id}`} className="panneau">
       <div className={`panneau__visuel panneau__visuel--${visuel.type}`}>
         {visuel.type === 'photo' ? (
-          <Arche src={visuel.image} alt={visuel.alt} largeur={visuel.l} hauteur={visuel.h} cadrage={visuel.cadrage} curseur="Découvrir" />
+          <Arche src={visuel.image} alt={visuel.alt} largeur={visuel.l} hauteur={visuel.h} cadrage={visuel.cadrage} className={visuel.large ? 'arche--large' : ''} curseur="Découvrir" />
         ) : (
           <div className="panneau__sculpture">
             <Galet variante={index} couleur="var(--poudre)" className="panneau__halo" />
