@@ -21,9 +21,12 @@ GitHub (bouton crayon) :
 | --- | --- |
 | Téléphone, e-mail, adresse, lien Planity, horaires | `src/data/institut.js` |
 | Prestations, prix, durées, descriptions, marques | `src/data/tarifs.js` |
+| Photos de la galerie et leurs légendes | `src/data/galerie.js` |
 | Photos | `src/assets/photos/` (garder le même nom de fichier) |
+| Mentions légales (SIRET, raison sociale…) | `src/pages/MentionsLegales.jsx` |
 
-Les textes des pages sont dans `src/pages/` (un fichier par page).
+Les textes des pages sont dans `src/pages/` (un fichier par page). Les chiffres clés de l'accueil
+(nombre de prestations, de marques, de jours d'ouverture) se mettent à jour tout seuls.
 
 ## Travailler en local
 

@@ -8,7 +8,7 @@ export const categories = [
     id: 'visage',
     titre: 'Soins du visage',
     soin: true,
-    intro: 'Chaque soin commence par un diagnostic de peau. Les produits sont choisis selon votre type de peau et la saison.',
+    intro: 'Du soin éclat de trente minutes au soin anti-âge d’une heure dix, des soins pour tous les types de peau.',
     prestations: [
       { nom: 'Soin jeune', duree: 'moins de 18 ans', prix: '30 €', description: 'Un premier soin adapté aux peaux jeunes, pour apprendre les bons gestes au quotidien.' },
       { nom: 'Soin éclat', duree: '30 min', prix: '35 €', description: 'La mise en beauté rapide, pour les plus pressées : un teint éclatant en une demi-heure, à prix tout doux.' },
@@ -173,3 +173,13 @@ export const marques = [
     texte: 'Du maquillage certifié bio, de qualité professionnelle, à essayer sur place au présentoir.',
   },
 ]
+
+// Retrouve une prestation par catégorie et par nom (utilisé pour les mises en avant).
+export function trouver(categorieId, nom) {
+  const p = categories.find((c) => c.id === categorieId)?.prestations.find((x) => x.nom === nom)
+  if (!p) throw new Error(`Prestation introuvable : ${categorieId} / ${nom}`)
+  return p
+}
+
+// Nombre total de prestations à la carte.
+export const nombrePrestations = categories.reduce((n, c) => n + c.prestations.length, 0)

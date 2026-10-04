@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Atelier perle</title>
+    <style>
+      html, body { margin: 0; background: transparent; }
+      canvas { display: block; }
+    </style>
+  </head>
+  <body>
+    <!--
+      Outil interne : produit les images fixes de la perle 3D.
+      Lancer `npm run dev`, puis ouvrir /outils/atelier-perle.html?matiere=nacre&t=0
+      Paramètres : matiere, amp, freq, graine, ex, ey, ez, t, rx, ry
+    -->
+    <canvas id="c"></canvas>
+    <script type="module">
+      import { creerPerle } from '/src/three/perle.js'
+      const q = new URLSearchParams(location.search)
+      const n = (k, d) => (q.has(k) ? Number(q.get(k)) : d)
+      const perle = creerPerle(document.getElementById('c'), {
+        matiere: q.get('matiere') ?? 'nacre',
+        detail: 96,
+        dpr: 1,
+        forme: {
+          amp: n('amp', 0.22),
+          freq: n('freq', 0.62),
+          graine: n('graine', 1.7),
+          etirement: [n('ex', 0.96), n('ey', 1.06), n('ez', 0.96)],
+        },
+      })
+      const taille = n('taille', 1200)
+      const c = document.getElementById('c')
+      c.style.width = c.style.height = taille + 'px'
+      perle.redimensionner(taille, taille)
+      perle.pointer(n('ry', 0), n('rx', 0))
+      // Plusieurs images pour que le lissage du pointeur atteigne sa cible.
+      for (let i = 0; i < 40; i++) perle.rendre(n('t', 0))
+      window.pret = true
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+/* Polices hébergées avec le site (licence SIL Open Font License). */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 900;
+  src: url('./assets/fonts/bodoni-moda-latin-opsz-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 900;
+  src: url('./assets/fonts/figtree-latin-wght-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Allura';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('./assets/fonts/allura-latin-400-normal.woff2') format('woff2');
+}

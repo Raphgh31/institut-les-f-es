@@ -1,36 +1,51 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import Section from './ui/Section.jsx'
+import TitreRevele from './ui/TitreRevele.jsx'
+import Galet from './ui/Galet.jsx'
+import { apparition } from '../motion/tokens.js'
 
-export default function EnTetePage({ titre, children, image, alt }) {
+/**
+ * En-tête des pages intérieures : grand titre éditorial, chapeau,
+ * et un visuel (photo en arche ou perle) qui dérive au défilement.
+ */
+export default function EnTetePage({ surtitre, lignes, children, visuel, galet = 0, tourne = false }) {
+  const ref = useRef(null)
+  const reduit = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], [0, reduit ? 0 : -60])
+  const rotation = useTransform(scrollYProgress, [0, 1], [0, reduit ? 0 : 14])
+
   return (
-    <section className={`entete-page ${image ? 'entete-page--image' : ''}`}>
+    <Section ref={ref} ton="ivoire" className="entete-page">
       <div className="conteneur entete-page__grille">
-        <motion.div
-          className="entete-page__texte"
-          initial="cache"
-          animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-        >
-          <motion.h1 variants={{ cache: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}>{titre}</motion.h1>
+        <div className="entete-page__texte">
+          {surtitre && (
+            <motion.p className="micro" initial="cache" animate="visible" variants={apparition(12)}>
+              {surtitre}
+            </motion.p>
+          )}
+          <TitreRevele as="h1" lignes={lignes} auChargement delai={0.1} />
           {children && (
-            <motion.div
-              className="entete-page__intro"
-              variants={{ cache: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
-            >
+            <motion.div className="entete-page__chapo" initial="cache" animate="visible" variants={apparition(16, 0.45)}>
               {children}
             </motion.div>
           )}
-        </motion.div>
-        {image && (
-          <motion.img
-            className="entete-page__image"
-            src={image}
-            alt={alt}
-            initial={{ opacity: 0, scale: 1.03 }}
+        </div>
+        {visuel && (
+          <motion.div
+            className="entete-page__visuel"
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
-          />
+            transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
+          >
+            <Galet variante={galet} className="entete-page__halo" />
+            <motion.div style={{ y, rotate: tourne ? rotation : 0 }} className="entete-page__objet">
+              {visuel}
+            </motion.div>
+          </motion.div>
         )}
       </div>
-    </section>
+    </Section>
   )
 }

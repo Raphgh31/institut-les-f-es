@@ -10,5 +10,5 @@ export default defineConfig(({ mode }) => ({
   build:
     mode === 'single'
       ? { outDir: 'dist-single', assetsInlineLimit: 100_000_000 }
-      : { outDir: 'dist' },
+      : { outDir: 'dist', chunkSizeWarningLimit: 600 }, // three.js est chargé à part, à la demande
 }))
