@@ -21,7 +21,7 @@ import interieur from '../assets/photos/interieur.webp'
 import perleNacre from '../assets/perles/perle-nacre.webp'
 import perlePoudre from '../assets/perles/perle-poudre.webp'
 
-const extraitLookbook = ['accueil', 'cabine', 'manucure', 'maquillage', 'etageres'].map((id) => photos.find((p) => p.id === id))
+const extraitLookbook = ['accueil', 'coin', 'manucure', 'maquillage', 'etageres'].map((id) => photos.find((p) => p.id === id))
 
 function Hero() {
   const ref = useRef(null)

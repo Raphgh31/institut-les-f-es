@@ -6,7 +6,7 @@ import Arche from './ui/Arche.jsx'
 import Galet from './ui/Galet.jsx'
 import Reveal from './ui/Reveal.jsx'
 import { trouver } from '../data/tarifs.js'
-import cabineZen from '../assets/photos/cabine-zen.webp'
+import coinZen from '../assets/photos/coin-zen.webp'
 import soinManucure from '../assets/photos/soin-manucure.webp'
 import epilationLaser from '../assets/photos/epilation-laser.webp'
 import Prix from './Prix.jsx'
@@ -26,7 +26,7 @@ const chapitres = [
     intro: 'Modelages et rituels venus d’ailleurs, dans la cabine Zen : on relâche les tensions et on prend le temps.',
     soins: [trouver('corps', 'Modelage à la bougie'), trouver('corps', 'Soin californien'), trouver('corps', 'Rituel Rêve des Marquises')],
     lien: { to: '/soins#corps', label: 'Les soins du corps' },
-    visuel: { type: 'photo', image: cabineZen, l: 1200, h: 1500, alt: 'La porte de la cabine de soins, surmontée des lettres ZEN.' },
+    visuel: { type: 'photo', large: true, image: coinZen, l: 1696, h: 1132, alt: 'Le coin Zen de l’institut : présentoirs de bijoux et de soins Eskalia, fauteuil, et la porte de la cabine surmontée des lettres ZEN.' },
   },
   {
     id: 'mains',

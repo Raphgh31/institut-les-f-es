@@ -8,7 +8,7 @@ import Chiffres from '../components/Chiffres.jsx'
 import Lookbook from '../components/Lookbook.jsx'
 import { photos } from '../data/galerie.js'
 import { institut } from '../data/institut.js'
-import cabineZen from '../assets/photos/cabine-zen.webp'
+import coinZen from '../assets/photos/coin-zen.webp'
 import murBijoux from '../assets/photos/mur-bijoux.webp'
 import manucure from '../assets/photos/manucure.webp'
 
@@ -33,7 +33,7 @@ export default function Institut() {
       <EnTetePage
         surtitre="L’institut"
         lignes={['Mélody, Cécile', 'et leur institut']}
-        visuel={<Arche src={cabineZen} alt="La porte de la cabine de soins, surmontée des lettres ZEN." largeur={1200} hauteur={1500} priorite />}
+        visuel={<Arche src={coinZen} alt="Le coin Zen de l’institut : présentoirs de bijoux et de soins Eskalia, fauteuil, et la porte de la cabine." largeur={1696} hauteur={1132} className="arche--large" priorite />}
         galet={1}
       >
         <p>
