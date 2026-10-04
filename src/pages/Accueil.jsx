@@ -121,12 +121,6 @@ export default function Accueil() {
             className="manifeste__texte"
             lignes={['Un soin réussi commence', 'par une écoute.', 'Viennent ensuite les gestes,', 'les textures, et le temps', 'qu’il faut.']}
           />
-          <Reveal className="manifeste__note" delay={0.2}>
-            <p>
-              Soins du visage et du corps, épilations, épilation définitive, ongles, regard, maquillage et sun
-              institute : tout se passe au même endroit, à Baud.
-            </p>
-          </Reveal>
         </div>
       </Section>
 

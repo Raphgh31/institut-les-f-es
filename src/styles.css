@@ -10,7 +10,7 @@
 
 :root {
   /* Couleurs */
-  --ivoire: #f7f2ec;
+  --ivoire: #f6efe6;
   --ivoire-clair: #fcf9f5;
   --nude: #eddcce;
   --poudre: #ebcbc1;
@@ -20,11 +20,11 @@
   --ardoise: #272c33;
   --ardoise-fonce: #1f2329;
   --texte: #23272e;
-  --texte-doux: #574e48;
+  --texte-doux: #51463f;
   --prune: #62244a;
   --prune-fonce: #431c35;
   --vert: #7ab35f;
-  --trait: rgba(35, 39, 46, 0.2);
+  --trait: rgba(110, 76, 57, 0.22);
   --sur-sombre: #f1ebe4;
   --sur-sombre-doux: #b9b1a9;
   --fond-courant: var(--ivoire);
@@ -544,10 +544,10 @@ html.curseur-appui .curseur--label .curseur__disque { transform: scale(1.15); }
 .statut--ouvert .statut__point { background: var(--vert); box-shadow: 0 0 0 4px rgba(122, 179, 95, 0.2); }
 
 /* ---------- Manifeste ---------- */
-.manifeste { padding-block: clamp(3rem, 7vw, 6rem) var(--respiration); }
+.manifeste { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3rem, 7vw, 5.5rem); }
 .manifeste__grille {
   display: grid;
-  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 5rem);
   align-items: end;
 }
@@ -557,10 +557,9 @@ html.curseur-appui .curseur--label .curseur__disque { transform: scale(1.15); }
   line-height: 1.16;
   letter-spacing: -0.01em;
 }
-.manifeste__note { max-width: 22rem; color: var(--texte-doux); padding-top: 1.2rem; border-top: 1px solid var(--champagne); }
 
 /* ---------- Récit des soins (défilement éditorial) ---------- */
-.recit { padding-block: var(--respiration); }
+.recit { padding-block: clamp(2rem, 4vw, 3.5rem) var(--respiration); }
 .recit__grille {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -938,13 +937,13 @@ html.curseur-appui .curseur--label .curseur__disque { transform: scale(1.15); }
   display: grid;
   gap: 0.75rem;
   padding: clamp(1.6rem, 3vw, 2.4rem);
-  border: 1px solid var(--trait);
+  border: 1px solid rgba(184, 145, 95, 0.45);
   border-radius: 2px;
-  background: transparent;
+  background: var(--ivoire-clair);
   overflow: hidden;
   transition: transform 0.45s var(--ease-smooth), background-color 0.45s var(--ease-smooth), border-color 0.45s var(--ease-smooth);
 }
-.carte-soin:hover { transform: translateY(-4px); background: var(--ivoire-clair); border-color: var(--champagne); }
+.carte-soin:hover { transform: translateY(-4px); background: #fffdfa; border-color: var(--champagne); }
 .carte-soin__orne {
   position: absolute;
   top: 1.1rem;
