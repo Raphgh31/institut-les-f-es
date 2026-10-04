@@ -4,10 +4,8 @@ import { motion, useInView, useScroll, useSpring } from 'framer-motion'
 import Section from './ui/Section.jsx'
 import Arche from './ui/Arche.jsx'
 import Galet from './ui/Galet.jsx'
-import Perle from './Perle.jsx'
 import Reveal from './ui/Reveal.jsx'
 import { trouver } from '../data/tarifs.js'
-import perleNacre from '../assets/perles/perle-nacre.webp'
 import cabineZen from '../assets/photos/cabine-zen.webp'
 import soinManucure from '../assets/photos/soin-manucure.webp'
 import epilationLaser from '../assets/photos/epilation-laser.webp'
@@ -20,7 +18,7 @@ const chapitres = [
     intro: 'Nettoyer, exfolier, hydrater. Chaque soin est adapté à votre peau, de la mise en beauté express au soin anti-âge.',
     soins: [trouver('visage', 'Soin éclat'), trouver('visage', 'Soin Les Fées Beauté'), trouver('visage', 'Soin anti-âge régénérant')],
     lien: { to: '/soins#visage', label: 'Les soins du visage' },
-    visuel: { type: 'perle', image: perleNacre },
+    visuel: null,
   },
   {
     id: 'corps',
@@ -57,17 +55,12 @@ function Panneau({ chapitre, index, onActif }) {
 
   const { visuel } = chapitre
   return (
-    <article ref={ref} id={`chapitre-${chapitre.id}`} className="panneau">
-      <div className={`panneau__visuel panneau__visuel--${visuel.type}`}>
-        {visuel.type === 'photo' ? (
+    <article ref={ref} id={`chapitre-${chapitre.id}`} className={`panneau ${visuel ? '' : 'panneau--texte'}`}>
+      {visuel && (
+        <div className="panneau__visuel">
           <Arche src={visuel.image} alt={visuel.alt} largeur={visuel.l} hauteur={visuel.h} cadrage={visuel.cadrage} className={visuel.large ? 'arche--large' : ''} curseur="Découvrir" />
-        ) : (
-          <div className="panneau__sculpture">
-            <Galet variante={index} couleur="var(--poudre)" className="panneau__halo" />
-            <Perle image={visuel.image} />
-          </div>
-        )}
-      </div>
+        </div>
+      )}
       <Reveal className="panneau__texte">
         <h3 className="panneau__titre">{chapitre.titre}</h3>
         <p>{chapitre.intro}</p>

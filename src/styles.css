@@ -12,19 +12,19 @@
   /* Couleurs */
   --ivoire: #f7f2ec;
   --ivoire-clair: #fcf9f5;
-  --nude: #efe3d8;
-  --poudre: #ecd3cb;
-  --poudre-fonce: #d8b1a6;
-  --champagne: #c4a27a;
-  --brun: #7a5a48;
+  --nude: #eddcce;
+  --poudre: #ebcbc1;
+  --poudre-fonce: #d4a597;
+  --champagne: #b8915f;
+  --brun: #6e4c39;
   --ardoise: #272c33;
   --ardoise-fonce: #1f2329;
-  --texte: #2b2f36;
-  --texte-doux: #655d57;
-  --prune: #5c2848;
+  --texte: #23272e;
+  --texte-doux: #574e48;
+  --prune: #62244a;
   --prune-fonce: #431c35;
   --vert: #7ab35f;
-  --trait: rgba(43, 47, 54, 0.14);
+  --trait: rgba(35, 39, 46, 0.2);
   --sur-sombre: #f1ebe4;
   --sur-sombre-doux: #b9b1a9;
   --fond-courant: var(--ivoire);
@@ -589,7 +589,7 @@ html.curseur-appui .curseur--label .curseur__disque { transform: scale(1.15); }
   font-size: clamp(2.2rem, 4.1vw, 4rem);
   line-height: 1.08;
   color: var(--texte);
-  opacity: 0.26;
+  opacity: 0.34;
   cursor: pointer;
   transition: opacity var(--duration-medium) var(--ease-soft), transform var(--duration-medium) var(--ease-smooth);
 }
@@ -614,6 +614,8 @@ html.curseur-appui .curseur--label .curseur__disque { transform: scale(1.15); }
 .panneau__sculpture .perle { width: 82%; }
 .panneau__texte { display: grid; gap: 1.1rem; max-width: 32rem; justify-items: start; }
 .panneau:nth-child(even) .panneau__texte { justify-self: end; }
+/* Chapitre sans visuel : le texte se place en face de son titre, sans grand vide. */
+.panneau--texte { min-height: 52vh; align-content: start; padding-top: 2vh; }
 .panneau__titre { font-size: var(--t-h2); }
 .panneau__texte > p { color: var(--texte-doux); }
 .panneau__soins { list-style: none; margin: 0.4rem 0 0.6rem; padding: 0; width: 100%; }
